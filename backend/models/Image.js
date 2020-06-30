@@ -1,0 +1,13 @@
+const mongoose = require('mongoose');
+
+const imageSchema = new mongoose.Schema(
+	{
+		courseImage: {
+			type: String
+		}
+	},
+	{ timestamps: true }
+);
+
+const Image = mongoose.model('Image', imageSchema);
+module.exports = Image;
