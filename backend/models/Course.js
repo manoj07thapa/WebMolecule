@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Image = require('./Image');
+const User = require('./User');
 
 const courseSchema = new mongoose.Schema(
 	{
@@ -9,9 +11,7 @@ const courseSchema = new mongoose.Schema(
 		subtitle: {
 			type: String
 		},
-		courseImage: {
-			type: String
-		},
+		courseImg: { type: mongoose.Schema.Types.ObjectId, ref: 'Image' },
 		description: {
 			type: String,
 			required: true
@@ -21,5 +21,5 @@ const courseSchema = new mongoose.Schema(
 	{ timestamps: true }
 );
 
-const Course = mongoose.model('Course', courseSchema);
+const Course = mongoose.model('course', courseSchema);
 module.exports = Course;

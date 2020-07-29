@@ -13,7 +13,7 @@ router.post('/', (req, res, next) => {
 	const { credentials } = req.body;
 	User.findOne({ email: credentials.email }).then((user) => {
 		if (user && user.isValidPassword(credentials.password)) {
-			res.json({
+			return res.json({
 				userRecord: user.toAuthJSON()
 			});
 		}

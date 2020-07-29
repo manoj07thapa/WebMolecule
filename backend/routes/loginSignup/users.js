@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
-const parseErrors = require('../../utils/parseErrors');
 const Yup = require('yup');
-const { validateUser } = require('../../helpers/routeHelpers');
 
 /** we only store email & password is first converted into hash vis setPassword() in User mideland stored
  * 
@@ -28,7 +26,7 @@ router.post('/', (req, res) => {
 			const { firstname, lastname, email, password } = req.body.user;
 			User.findOne({ email: email }).then((user) => {
 				if (user) {
-					res.status(403).json({ error: { global: 'Email already exist !!' } });
+					return res.status(403).json({ error: { global: 'Email already exist !!' } });
 				} else {
 					const user = new User({ firstname, lastname, email });
 					user.setPassword(password);

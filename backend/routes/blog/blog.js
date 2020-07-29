@@ -49,6 +49,7 @@ router.get('/', (req, res) => {
 
 // fetching a single blog from its id
 router.post('/getBlog', (req, res) => {
+	console.log(req.body);
 	Blog.findOne({ _id: req.body.blogId }, (err, blog) => {
 		if (err) res.status(400).json({ errors: { global: 'something went wrong' } });
 		else res.status(200).json({ blog });
